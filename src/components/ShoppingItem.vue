@@ -1,9 +1,16 @@
 <template>
   <tr @click="toggleDoneStatus" class="shopping-list__item" v-if="item" :class="{complete: isItemComplete}">
     <td class="shopping-list__item_idx" @click="openItemPage">
-          <div>
-        {{ idx }}
-          </div>
+      <el-tooltip
+          class="box-item"
+          effect="dark"
+          content="Go to item page"
+          placement="top"
+      >
+        <div>
+          {{ idx }}
+        </div>
+      </el-tooltip>
       <div class="shopping-list__item_idx-border-right"></div>
     </td>
     <td>
@@ -13,8 +20,22 @@
       {{ `${item.price} NIS` }}
     </td>
     <td class="shopping-list__item_icons">
-      <div @click.stop="edit" class="shopping-list__item_icon shopping-list__item_icon-edit"></div>
-      <div @click.stop="remove" class="shopping-list__item_icon shopping-list__item_icon-remove"></div>
+      <el-tooltip
+          class="box-item"
+          effect="dark"
+          content="Edit"
+          placement="top"
+      >
+        <div @click.stop="edit" class="shopping-list__item_icon shopping-list__item_icon-edit"></div>
+      </el-tooltip>
+      <el-tooltip
+          class="box-item"
+          effect="dark"
+          content="Remove"
+          placement="top"
+      >
+        <div @click.stop="remove" class="shopping-list__item_icon shopping-list__item_icon-remove"></div>
+      </el-tooltip>
     </td>
   </tr>
 </template>
@@ -38,7 +59,7 @@ export default {
     edit() {
       this.$emit("edit", this.$props.item._id);
     }
-    ,remove() {
+    , remove() {
       this.$emit("remove", this.$props.item._id);
     },
     toggleDoneStatus() {
