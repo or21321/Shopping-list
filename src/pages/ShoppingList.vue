@@ -7,6 +7,7 @@
                      @edit="editItem"
                      @remove="removeItem"
                      @toggleDoneStatus="toggleItemDoneStatus"
+                     @openItemPage="openItemPage"
       ></shopping-item>
       <li class="shopping-list__item shopping-list__item_sum-prices">
         <div class="shopping-list__item_idx">
@@ -56,20 +57,20 @@ export default {
   },
   methods: {
     editItem(id) {
-      console.log("id:", id)
       this.$router.push('/edit/' + id)
     },
     removeItem(id) {
-      console.log("id:", id)
       this.$store.dispatch({type: "removeShoppingItem", id})
     },
     // ** Should use specific action for toggle item, and not send shoppingItem through child component, to store, but to save time implemented this way for now.
     toggleItemDoneStatus(shoppingItem) {
-      console.log("shoppingItem:", shoppingItem)
       this.$store.dispatch({type: "toggleShoppingItemDoneStatus", shoppingItem})
     },
     openAddItemModal() {
       this.$router.push('/edit/')
+    },
+    openItemPage(id) {
+      this.$router.push(`/${id}`)
     }
   }
 };

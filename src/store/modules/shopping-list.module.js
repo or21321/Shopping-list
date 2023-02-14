@@ -24,10 +24,8 @@ export default {
         getAllItemsPriceSum(state) {
             let isAllPricesNumbers = true
             const pricesSum = state.shoppingList.reduce((pricesSum, item) => {
-                console.log("item.price:", item.price)
                 if (Number.isInteger(+item.price)) pricesSum += +item.price
                 else isAllPricesNumbers = false
-                console.log("pricesSum:", pricesSum)
                 return pricesSum
             }, 0)
 
@@ -37,7 +35,6 @@ export default {
     },
     mutations: {
         setShoppingList(state, {shoppingList}) {
-            console.log("shoppingList:", shoppingList)
             state.shoppingList = shoppingList;
         },
         removeShoppingItem({shoppingList}, {id}) {
@@ -72,15 +69,11 @@ export default {
         },
         async toggleShoppingItemDoneStatus({commit, dispatch}, {shoppingItem}) {
             try {
-                console.log("shoppingItem:", shoppingItem)
                 const toggledItem = {
                     ...shoppingItem,
                     isComplete: !shoppingItem.isComplete
                 }
-                console.log("toggledItem:", toggledItem)
                 dispatch({type: 'saveShoppingItem', shoppingItem: toggledItem})
-                // await shoppingService.remove(id);
-                // commit({ type: 'removeShoppingItem', id });
             } catch (err) {
                 console.log('cannot remove shoppingItem', err);
             }
@@ -108,59 +101,3 @@ export default {
     },
 };
 
-// loadShoppingList(context, state) {
-// // console.log(state.filterBy); // with proxy , state.filterBy is undifend
-// let filterBy = { ...context.state.filterBy }; // important use context.state.filterBy
-// //server side filter
-// return shoppingService
-//     .query(filterBy)
-//     .then((shoppingList) => {
-//         context.commit({ type: 'setShoppingList', shoppingList });
-//     })
-//     .catch((err) => {
-//         console.log('Error: cannot get shoppingList', err);
-//         throw err;
-//     });
-// },
-//       context.commit   payload.id
-// removeShoppingItem({ commit }, { id }) {
-//     return shoppingService
-//         .remove(id)
-//         .then(() => {
-//             commit({ type: 'removeShoppingItem', id });
-//         })
-//         .catch((err) => {
-//             console.log('Error: cannot remove shoppingItem', err);
-//             throw err;
-//         });
-// },
-// saveShoppingItem({ commit }, { shoppingItem }) {
-//     return shoppingService
-//         .save(shoppingItem)
-//         .then((savedShoppingItem) => {
-//             commit({ type: 'saveShoppingItem', shoppingItem: savedShoppingItem });
-//             console.log('savedShoppingItem', savedShoppingItem);
-//             return savedShoppingItem; // can return if you we want showMsg
-//         })
-//         .catch((err) => {
-//             console.log('Error: cannot save shoppingItem', err);
-//             throw err;
-//         });
-// },
-// getShoppingItemById(context, { shoppingItemId }) {
-//     return shoppingService
-//         .getById(shoppingItemId)
-//         .then((shoppingItem) => {
-//             //can add commit if needed
-//             return shoppingItem;
-//         })
-//         .catch((err) => {
-//             console.log('Error: cannot get shoppingItem', err);
-//             throw err;
-//         });
-// },
-// //set the filter and run the loadShoppingList with the filter
-// setFilterAct({ commit, dispatch }, { filterBy }) {
-//     commit({ type: 'setFilter', filterBy });
-//     dispatch({ type: 'loadShoppingList' });
-// },

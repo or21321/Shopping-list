@@ -1,6 +1,6 @@
 <template>
   <li @click="toggleDoneStatus" class="shopping-list__item" v-if="item" :class="{complete: isItemComplete}">
-    <div class="shopping-list__item_idx">
+    <div class="shopping-list__item_idx" @click="openItemPage">
           <div>
         {{ idx }}
           </div>
@@ -43,6 +43,9 @@ export default {
     },
     toggleDoneStatus() {
       this.$emit("toggleDoneStatus", this.$props.item);
+    },
+    openItemPage() {
+      this.$emit("openItemPage", this.$props.item._id);
     },
   }
 };

@@ -42,9 +42,7 @@ export default {
     };
   },
   async created() {
-    console.log('created')
     const id = this.shoppingItemId;
-    console.log("id:", id)
     if (id) {
       try {
         var shoppingItem = await this.$store.dispatch({type: "getShoppingItemById", shoppingItemId: id});
@@ -53,43 +51,30 @@ export default {
         console.log("err:", err)
       }
     } else {
-      console.log('else')
       this.shoppingItemToEdit = shoppingService.getEmptyShoppingItem()
-      console.log("this.shoppingItemToEdit:", this.shoppingItemToEdit)
     }
     ;
   },
   methods: {
     async save() {
-      console.log('Save')
       try {
-        var savedShoppingItem = await this.$store.dispatch({
+        await this.$store.dispatch({
           type: "saveShoppingItem",
           shoppingItem: this.shoppingItemToEdit
         });
-        // showMsg(`New ShoppingItem with ID: ${savedShoppingItem._id}`);
         this.$router.push("/");
       } catch (err) {
-        // showMsg(`Cannot add shoppingItem`, "danger");
       }
-      // this.shoppingItemToEdit = shoppingItemService.getEmptyShoppingItem();
     },
     closeModal() {
-      console.log('Close')
       this.shoppingItemToEdit = null;
       this.$router.push("/");
     }
   },
   computed: {
-    isComponentMounted() {
-      return this.isMounted
-    },
     shoppingItemId() {
       return this.$route.params.id;
     },
-    pageTitle() {
-      return this.shoppingItemId ? "Edit Item" : "Add Item";
-    }
   }
 };
 </script>

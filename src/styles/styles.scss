@@ -5,20 +5,15 @@
 @import "setup/functions";
 
 // BASICS
-@import "basics/helpers";
 @import "basics/base";
 @import "basics/layout";
 
 // COMPONENTS
 @import "components/app";
-@import "components/app-header";
 @import "components/modal-wrapper";
-@import "components/menu-popup";
-// @import "components/remove-confirm";
 @import "components/shopping-item";
 @import "components/item-edit";
-@import "components/shopping-list";
 
 // PAGES
-@import "pages/home";
-@import "pages/login";
+@import "pages/shopping-list";
+@import "pages/item-page";
