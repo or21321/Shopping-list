@@ -57,6 +57,21 @@ export default {
                 console.log('cannot remove shoppingItem', err);
             }
         },
+        async toggleShoppingItemDoneStatus({ commit, dispatch }, { shoppingItem }) {
+            try {
+                console.log("shoppingItem:", shoppingItem)
+                const toggledItem = {
+                    ...shoppingItem,
+                    isComplete: !shoppingItem.isComplete
+                }
+                console.log("toggledItem:", toggledItem)
+                dispatch({type: 'saveShoppingItem', shoppingItem: toggledItem})
+                // await shoppingService.remove(id);
+                // commit({ type: 'removeShoppingItem', id });
+            } catch (err) {
+                console.log('cannot remove shoppingItem', err);
+            }
+        },
         async saveShoppingItem({ commit }, { shoppingItem }) {
             try {
                 const savedShoppingItem = await shoppingService.save(shoppingItem);

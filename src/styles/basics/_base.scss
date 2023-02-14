@@ -51,6 +51,11 @@ ul {
     list-style: none;
 }
 
+button {
+    background-color: unset;
+    border: unset;
+}
+
 button:hover {
     cursor: pointer;
 }

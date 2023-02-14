@@ -1,38 +1,70 @@
 .shopping-list__item {
-    text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px;
-    border-radius: 3px;
+  height: 48px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 10px 5px 10px;
+  border-radius: 3px;
+  position: relative;
+  border-bottom: 1px solid #E3E3E5;
+  color: #585666;
+  font-size: 15px;
+
+  &.complete {
+    background-color: $clr1;
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  div.shopping-list__item_idx {
+    color: #FF941A;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 22px;
+    padding-right: 9px;
     position: relative;
 
-    &.done {
-        background-color: $clr1;
+    div {
+      width: 39px;
+      height: 32px;
     }
 
-    &:hover {
-        cursor: pointer;
+    .shopping-list__item_idx-border-right {
+      width: 1px;
+      height: 48px;
+      background-color: #E3E3E5;
+      position: absolute;
+      right: 0;
+      top: -10px;
+    }
+  }
+
+  div:not(:first-child) {
+    line-height: 18px;
+  }
+
+  &_icons {
+    display: flex;
+    gap: 23px;
+  }
+
+  &_icon {
+    width: 18px;
+    height: 18px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    &-remove {
+      background-image: url("@/assets/remove-icon.svg");
+      width: 14px;
     }
 
-    &_icons {
-        display: flex;
-        gap: 23px;
+    &-edit {
+      background-image: url("@/assets/edit-icon.svg");
     }
-
-    &_icon {
-        width: 18px;
-        height: 18px;
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-
-        &-remove {
-            background-image: url("@/assets/remove-icon.svg");
-            width: 14px;
-        }
-        &-edit {
-            background-image: url("@/assets/edit-icon.svg");
-        }
-    }
+  }
 }

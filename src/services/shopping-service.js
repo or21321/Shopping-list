@@ -79,7 +79,7 @@ function _createShoppingItem(name, price, labels) {
         name,
         price,
         labels,
-        isComplete: true,
+        isComplete: false,
         createdAt: new Date(Date.now()).toLocaleString(),
     };
 }

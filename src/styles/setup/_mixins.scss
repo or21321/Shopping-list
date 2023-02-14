@@ -13,13 +13,13 @@
 }
 
 @mixin for-narrow-layout {
-  @media (max-width: $break-narrow) {
+  @media (min-width: $break-narrow) {
     @content;
   }
 }
 
 @mixin for-normal-layout {
-  @media (max-width: $break-normal) {
+  @media (min-width: $break-normal) {
     @content;
   }
 }
@@ -30,11 +30,11 @@
   }
 }
 
-@mixin layoutGTC($max) {
+@mixin layoutGTC($max, $padding) {
   grid-template-columns:
-    minmax($layoutPadding, 1fr)
-    minmax(auto, $max)
-    minmax($layoutPadding, 1fr);
+    minmax($padding, 1fr)
+    minmax(280px, $max)
+    minmax($padding, 1fr);
 }
 
 /* Media  Mixins */
