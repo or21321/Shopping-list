@@ -1,11 +1,13 @@
 .item-edit {
   width: 30%;
-  padding: 1rem;
+  padding: 1rem 1rem 0 1rem;
   border-radius: 3px;
   min-width: fit-content;
   text-align: center;
   max-width: 700px;
   position: relative;
+  display: flex;
+  flex-direction: column;
 
   .item-edit-form__close-btn {
     width: 20px;
@@ -30,7 +32,7 @@
     gap: 1em;
     margin-bottom: 1em;
     min-width: 280px;
-    height: 100%;
+    flex-grow: 1;
 
     &__save-btn {
       width: 21px;
@@ -55,6 +57,7 @@
       color: #B1B0B8;
       font-size: 15px;
       flex-grow: 1;
+      font-family: 'Inter', Sans-Serif;
 
       &::placeholder {
         color: #B1B0B8;
@@ -77,6 +80,7 @@
       color: #B1B0B8;
       font-size: 15px;
       height: 35%;
+      font-family: 'Inter', Sans-Serif;
 
       &::placeholder {
         color: #B1B0B8;
@@ -90,5 +94,14 @@
     button {
       max-width: 65%;
     }
+  }
+
+  footer {
+    padding-bottom: 73px;
+    height: 1px;
+    border-top: 1px solid #E3E3E6;
+    width: calc(100% + 32px);
+    position: relative;
+    right: 16px;
   }
 }

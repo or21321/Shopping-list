@@ -26,6 +26,7 @@
           <textarea class="item-edit-form__textarea" type="text" placeholder="Description" v-model="shoppingItemToEdit.description"/>
           <button class="item-edit-form__save-btn"></button>
         </form>
+        <footer></footer>
       </section>
     </Transition>
   </div>

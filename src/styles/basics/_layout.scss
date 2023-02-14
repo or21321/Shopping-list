@@ -2,6 +2,7 @@
   display: grid;
   grid-template-columns: $layoutPadding 1fr $layoutPadding;
   justify-items: center;
+  grid-template-rows: 1fr;
 
   > * {
     grid-column: 2;
@@ -19,9 +20,9 @@
     flex-grow: 1;
   }
 
-  //> *.full {
-  //    grid-column: 1 / -1;
-  //}
+  > *.full-x {
+      grid-column: 1 / -1;
+  }
 
   // > *:not(.full) {
   //     display: grid;

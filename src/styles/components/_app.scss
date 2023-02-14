@@ -9,4 +9,15 @@
     flex-grow: 1;
     align-items: start;
   }
+
+  .app-contaier {
+    height: 100%;
+  }
+
+  footer {
+    padding-bottom: 73px;
+    height: 1px;
+    border-top: 1px solid #E3E3E6;
+    width: 100%;
+  }
 }
