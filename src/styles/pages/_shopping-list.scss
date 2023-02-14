@@ -8,10 +8,16 @@
   }
 
   .shopping-list {
+    // Using ul:
+    //margin-top: 20px;
+    //display: flex;
+    //flex-direction: column;
+    //gap: 16px;
+
+    // Using table:
     margin-top: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
+    width: 100%;
+    border-spacing: 0px 15px;
 
     &__add-button {
       color: #FF941A;

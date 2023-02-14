@@ -1,30 +1,32 @@
 <template>
   <div class="shopping-list-container full">
     <h1>Shopping-list</h1>
-    <ul class="shopping-list" v-if="shoppingList && shoppingList.length">
-      <shopping-item v-for="(shoppingItem, idx) of shoppingList"
-                     :item="shoppingItem" :idx="idx"
-                     @edit="editItem"
-                     @remove="removeItem"
-                     @toggleDoneStatus="toggleItemDoneStatus"
-                     @openItemPage="openItemPage"
-      ></shopping-item>
-      <li class="shopping-list__item shopping-list__item_sum-prices">
-        <div class="shopping-list__item_idx">
-          <div>
-          </div>
-          <div class="shopping-list__item_idx-border-right"></div>
-        </div>
-        <div>
-          Total:
-        </div>
-        <div>
-          {{ `${getAllItemsPriceSum} NIS` }}
-        </div>
-        <div class="shopping-list__item_icons">
-        </div>
-    </li>
-    </ul>
+    <table class="shopping-list" v-if="shoppingList && shoppingList.length">
+<!--      <ul class="shopping-list" v-if="shoppingList && shoppingList.length">-->
+        <shopping-item v-for="(shoppingItem, idx) of shoppingList"
+                       :item="shoppingItem" :idx="idx"
+                       @edit="editItem"
+                       @remove="removeItem"
+                       @toggleDoneStatus="toggleItemDoneStatus"
+                       @openItemPage="openItemPage"
+        ></shopping-item>
+        <tr class="shopping-list__item shopping-list__item_sum-prices">
+          <td class="shopping-list__item_idx">
+            <div>
+            </div>
+            <div class="shopping-list__item_idx-border-right"></div>
+          </td>
+          <td>
+            Total:
+          </td>
+          <td>
+            {{ `${getAllItemsPriceSum} NIS` }}
+          </td>
+          <td class="shopping-list__item_icons">
+          </td>
+        </tr>
+<!--      </ul>-->
+    </table>
     <div v-else>
       No shopping items to show, reload page
     </div>

@@ -1,22 +1,22 @@
 <template>
-  <li @click="toggleDoneStatus" class="shopping-list__item" v-if="item" :class="{complete: isItemComplete}">
-    <div class="shopping-list__item_idx" @click="openItemPage">
+  <tr @click="toggleDoneStatus" class="shopping-list__item" v-if="item" :class="{complete: isItemComplete}">
+    <td class="shopping-list__item_idx" @click="openItemPage">
           <div>
         {{ idx }}
           </div>
       <div class="shopping-list__item_idx-border-right"></div>
-    </div>
-    <div>
+    </td>
+    <td>
       {{ item.name }}
-    </div>
-    <div>
+    </td>
+    <td>
       {{ `${item.price} NIS` }}
-    </div>
-    <div class="shopping-list__item_icons">
+    </td>
+    <td class="shopping-list__item_icons">
       <div @click.stop="edit" class="shopping-list__item_icon shopping-list__item_icon-edit"></div>
       <div @click.stop="remove" class="shopping-list__item_icon shopping-list__item_icon-remove"></div>
-    </div>
-  </li>
+    </td>
+  </tr>
 </template>
 
 <script>

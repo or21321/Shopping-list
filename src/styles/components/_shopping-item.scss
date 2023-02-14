@@ -1,13 +1,12 @@
 .shopping-list__item {
   height: 48px;
   text-align: center;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  //display: flex;
+  //align-items: center;
+  //justify-content: space-between;
   padding: 10px 10px 5px 10px;
   border-radius: 3px;
   position: relative;
-  border-bottom: 1px solid #E3E3E5;
   color: #585666;
   font-size: 15px;
 
@@ -19,7 +18,21 @@
     cursor: pointer;
   }
 
-  div.shopping-list__item_idx {
+  & > td {
+    border-bottom: 1px solid #E3E3E5;
+  }
+
+  &_sum-prices {
+    & > td {
+      border-bottom: unset;
+
+      .shopping-list__item_idx-border-right {
+        width: 0 !important;
+      }
+    }
+  }
+
+  td.shopping-list__item_idx {
     color: #FF941A;
     font-weight: 700;
     font-size: 24px;
@@ -28,8 +41,8 @@
     position: relative;
 
     div {
-      width: 39px;
-      height: 32px;
+      //width: 39px;
+      //height: 32px;
     }
 
     .shopping-list__item_idx-border-right {
@@ -38,7 +51,8 @@
       background-color: #E3E3E5;
       position: absolute;
       right: 0;
-      top: -10px;
+      //top: -10px;
+      top: 0;
     }
   }
 
@@ -46,9 +60,12 @@
     line-height: 18px;
   }
 
-  &_icons {
-    display: flex;
-    gap: 23px;
+  &_icons > * {
+    display: inline-block;
+
+    &:first-child {
+      margin-right: 23px;
+    }
   }
 
   &_icon {
