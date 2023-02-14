@@ -21,43 +21,56 @@ export default {
             }
             return shoppingListForDisplay;
         },
+        getAllItemsPriceSum(state) {
+            let isAllPricesNumbers = true
+            const pricesSum = state.shoppingList.reduce((pricesSum, item) => {
+                console.log("item.price:", item.price)
+                if (Number.isInteger(+item.price)) pricesSum += +item.price
+                else isAllPricesNumbers = false
+                console.log("pricesSum:", pricesSum)
+                return pricesSum
+            }, 0)
+
+            if (isAllPricesNumbers) return pricesSum
+            else return 'Not all prices are number type'
+        },
     },
     mutations: {
-        setShoppingList(state, { shoppingList }) {
+        setShoppingList(state, {shoppingList}) {
             console.log("shoppingList:", shoppingList)
             state.shoppingList = shoppingList;
         },
-        removeShoppingItem({ shoppingList }, { id }) {
+        removeShoppingItem({shoppingList}, {id}) {
             const idx = shoppingList.findIndex((shoppingItem) => shoppingItem._id === id);
             shoppingList.splice(idx, 1);
         },
-        saveShoppingItem({ shoppingList }, { shoppingItem }) {
+        saveShoppingItem({shoppingList}, {shoppingItem}) {
             const idx = shoppingList.findIndex((currShoppingItem) => currShoppingItem._id === shoppingItem._id);
             idx === -1 ? shoppingList.push(shoppingItem) : shoppingList.splice(idx, 1, shoppingItem);
         },
-        setFilter(state, { filterBy }) {
+        setFilter(state, {filterBy}) {
             state.filterBy = filterBy;
         },
     },
     actions: {
         async loadShoppingList(context) {
             try {
-                const filterBy = { ...context.state.filterBy };
+                const filterBy = {...context.state.filterBy};
                 const shoppingList = await shoppingService.query(filterBy);
-                context.commit({ type: 'setShoppingList', shoppingList });
+                context.commit({type: 'setShoppingList', shoppingList});
             } catch (err) {
                 console.log("can't load shoppingList:", err);
             }
         },
-        async removeShoppingItem({ commit }, { id }) {
+        async removeShoppingItem({commit}, {id}) {
             try {
                 await shoppingService.remove(id);
-                commit({ type: 'removeShoppingItem', id });
+                commit({type: 'removeShoppingItem', id});
             } catch (err) {
                 console.log('cannot remove shoppingItem', err);
             }
         },
-        async toggleShoppingItemDoneStatus({ commit, dispatch }, { shoppingItem }) {
+        async toggleShoppingItemDoneStatus({commit, dispatch}, {shoppingItem}) {
             try {
                 console.log("shoppingItem:", shoppingItem)
                 const toggledItem = {
@@ -72,25 +85,25 @@ export default {
                 console.log('cannot remove shoppingItem', err);
             }
         },
-        async saveShoppingItem({ commit }, { shoppingItem }) {
+        async saveShoppingItem({commit}, {shoppingItem}) {
             try {
                 const savedShoppingItem = await shoppingService.save(shoppingItem);
-                commit({ type: 'saveShoppingItem', shoppingItem: savedShoppingItem });
+                commit({type: 'saveShoppingItem', shoppingItem: savedShoppingItem});
                 return savedShoppingItem;
             } catch (err) {
                 console.log(`can't save shoppingItem ${shoppingItem._id || ''}: ${err}`);
             }
         },
-        async getShoppingItemById(context, { shoppingItemId }) {
+        async getShoppingItemById(context, {shoppingItemId}) {
             try {
                 return await shoppingService.getById(shoppingItemId);
             } catch (err) {
                 console.log(`can't get shoppingItem ${shoppingItemId}: ${err}`);
             }
         },
-        async setFilter({ commit, dispatch }, { filterBy }) {
-            commit({ type: 'setFilter', filterBy });
-            await dispatch({ type: 'loadShoppingList' });
+        async setFilter({commit, dispatch}, {filterBy}) {
+            commit({type: 'setFilter', filterBy});
+            await dispatch({type: 'loadShoppingList'});
         },
     },
 };

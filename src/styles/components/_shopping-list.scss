@@ -29,6 +29,10 @@
         line-height: 30.5px;
         width: 39px;
         font-size: 24px;
+
+        &:hover{
+          cursor: pointer;
+        }
       }
 
       button {

@@ -8,12 +8,27 @@
                      @remove="removeItem"
                      @toggleDoneStatus="toggleItemDoneStatus"
       ></shopping-item>
+      <li class="shopping-list__item shopping-list__item_sum-prices">
+        <div class="shopping-list__item_idx">
+          <div>
+          </div>
+          <div class="shopping-list__item_idx-border-right"></div>
+        </div>
+        <div>
+          Total:
+        </div>
+        <div>
+          {{ `${getAllItemsPriceSum} NIS` }}
+        </div>
+        <div class="shopping-list__item_icons">
+        </div>
+    </li>
     </ul>
     <div v-else>
       No shopping items to show, reload page
     </div>
     <div class="shopping-list__add-button">
-      <div>+</div>
+      <div @click.stop="openAddItemModal">+</div>
       <button @click.stop="openAddItemModal">Add Product</button>
     </div>
 
@@ -34,6 +49,9 @@ export default {
   computed: {
     shoppingList() {
       return this.$store.getters.shoppingListForDisplay;
+    },
+    getAllItemsPriceSum() {
+      return this.$store.getters.getAllItemsPriceSum
     }
   },
   methods: {
